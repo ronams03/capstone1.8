@@ -1,0 +1,11 @@
+{
+  "appName": "Capstone1 Desktop",
+  "startUrl": "https://your-deployed-app.example.com",
+  "window": {
+    "width": 1440,
+    "height": 900,
+    "minWidth": 1200,
+    "minHeight": 760,
+    "backgroundColor": "#0f172a"
+  }
+}

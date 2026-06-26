@@ -1,0 +1,28 @@
+{
+  "dataset_name": "sample-payroll-current-users",
+  "description": "Sample payroll data created for the current active users.",
+  "pay_period_start": "2026-05-10",
+  "pay_period_end": "2026-05-25",
+  "records": [
+    {
+      "payroll_id": 5,
+      "employee_id": 1,
+      "name": "System Administrator"
+    },
+    {
+      "payroll_id": 6,
+      "employee_id": 2,
+      "name": "Roberth Namoc"
+    },
+    {
+      "payroll_id": 7,
+      "employee_id": 3,
+      "name": "Default Staff"
+    },
+    {
+      "payroll_id": 8,
+      "employee_id": 4,
+      "name": "Robe Nams"
+    }
+  ]
+}

@@ -1,0 +1,872 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: #0f172a;
+}
+
+.hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #2563eb 100%);
+    border-radius: 14px;
+    padding: 18px 20px;
+    color: #f8fafc;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 26px rgba(30, 58, 138, 0.3);
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 999px;
+    background: rgba(56, 189, 248, 0.2);
+    top: -110px;
+    right: -80px;
+    pointer-events: none;
+}
+
+.heroTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: #dbeafe;
+    font-size: 13px;
+}
+
+.heroActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.primaryButton,
+.secondaryButton,
+.ghostButton,
+.dangerButton {
+    border: none;
+    border-radius: 9px;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.primaryButton {
+    background: #38bdf8;
+    color: #0f172a;
+}
+
+.primaryButton:hover {
+    background: #7dd3fc;
+}
+
+.primaryButton:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.modalPrimary {
+    background: #1d4ed8;
+    color: #f8fafc;
+}
+
+.modalPrimary:hover {
+    background: #2563eb;
+}
+
+.secondaryButton {
+    background: rgba(255, 255, 255, 0.16);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.secondaryButton:hover {
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.ghostButton {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.ghostButton:hover {
+    background: #e2e8f0;
+}
+
+.dangerButton {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.dangerButton:hover {
+    background: #fecaca;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.2fr) minmax(260px, 0.8fr);
+    gap: 14px;
+}
+
+.panel {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+.panelHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.panelHead h2 {
+    margin: 0;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.panelHead p {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.calendarHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.calendarControls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calendarButton {
+    border: 1px solid #cbd5f5;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-radius: 8px;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.calendarButton:hover {
+    background: #dbeafe;
+}
+
+.monthTitle {
+    font-weight: 800;
+    color: #0f172a;
+    font-size: 14px;
+}
+
+.calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.weekday {
+    text-align: center;
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.dayCell {
+    min-height: 90px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+}
+
+.dayCellEmpty {
+    background: #ffffff;
+    border: 1px dashed #e2e8f0;
+    opacity: 0.7;
+}
+
+.dayNumber {
+    font-weight: 700;
+    font-size: 12px;
+    color: #0f172a;
+}
+
+.today {
+    border-color: #38bdf8;
+    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.4);
+    background: #e0f2fe;
+}
+
+.holidayStack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.holidayPill,
+.holidayMore {
+    border: none;
+    border-radius: 999px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+}
+
+.holidayPill {
+    background: rgba(14, 116, 144, 0.12);
+    color: #0f172a;
+}
+
+.holidayPill:hover {
+    background: rgba(14, 116, 144, 0.2);
+}
+
+.holidayMore {
+    background: rgba(15, 23, 42, 0.08);
+    color: #475569;
+}
+
+.holidayList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.holidayCard {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    text-align: left;
+    width: 100%;
+    appearance: none;
+}
+
+.holidayCardHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.holidayName {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.holidayDate {
+    font-size: 12px;
+    color: #1d4ed8;
+    font-weight: 700;
+}
+
+.holidayMeta {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.badge {
+    border-radius: 999px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+.badgeRegular {
+    background: rgba(37, 99, 235, 0.12);
+    color: #1d4ed8;
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+.badgeSpecial {
+    background: rgba(14, 116, 144, 0.12);
+    color: #0e7490;
+    border-color: rgba(14, 116, 144, 0.2);
+}
+
+.badgeWorking {
+    background: rgba(234, 88, 12, 0.14);
+    color: #c2410c;
+    border-color: rgba(234, 88, 12, 0.2);
+}
+
+.emptyState {
+    font-size: 12px;
+    color: #64748b;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px dashed #e2e8f0;
+}
+
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 12px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.modalCard {
+    width: min(720px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #ffffff;
+    border-radius: var(--modal-radius);
+    padding: 16px 18px 14px;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.3);
+}
+
+.modalHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modalHead h3 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.modalHead button {
+    border: none;
+    background: none;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modalGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 14px;
+    align-items: start;
+}
+
+.modalForm label,
+.modalGrid label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    width: 100%;
+}
+
+.modalGrid label {
+    flex: 0 220px;
+}
+
+.modalForm label span,
+.modalGrid label span {
+    font-size: 12px;
+    color: #334155;
+    font-weight: 700;
+}
+
+.input,
+.textarea,
+.select {
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 9px 10px;
+    font-size: 13px;
+    color: #0f172a;
+    background: #ffffff;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+    outline: 2px solid rgba(56, 189, 248, 0.25);
+    border-color: #38bdf8;
+}
+
+.textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+}
+
+.formRowTop {
+    align-items: flex-start;
+}
+
+.formLabel {
+    font-size: 13px;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.formField {
+    min-width: 0;
+    width: 100%;
+}
+
+.radioGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+}
+
+.radioOption {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #0f172a;
+    font-weight: 600;
+    width: auto;
+}
+
+.radioOption input {
+    width: 14px;
+    height: 14px;
+    accent-color: #2563eb;
+}
+
+.modalForm .radioOption {
+    display: inline-flex;
+    flex-direction: row;
+    width: auto;
+}
+
+.dateField {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    padding: 6px 10px;
+    background: #ffffff;
+    width: fit-content;
+    max-width: 240px;
+    box-sizing: border-box;
+}
+
+.dateIconButton {
+    border: none;
+    background: transparent;
+    padding: 0;
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.dateIconButton svg {
+    width: 100%;
+    height: 100%;
+}
+
+.dateInput {
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    color: #0f172a;
+    width: 140px;
+    background: transparent;
+}
+
+.dateInput:focus {
+    outline: none;
+}
+
+.dateInput::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.scopeSelect {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.scopePicker {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.scopeModeToggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.scopeManualInput {
+    width: 100%;
+}
+
+.sourceOtherInput {
+    margin-top: 8px;
+}
+
+.viewGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.viewItem span {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.viewItem p {
+    margin: 0;
+    font-size: 13px;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.formActions {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+    margin-top: 2px;
+}
+
+.modalActions .secondaryButton {
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+}
+
+.modalActions .secondaryButton:hover {
+    background: #e2e8f0;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+
+.commentSection {
+    margin-top: 12px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.commentHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.commentTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.commentRefresh {
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.commentRefresh:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.commentList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.commentEmpty {
+    font-size: 12px;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px dashed #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+
+.commentCard {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 10px;
+    background: #ffffff;
+}
+
+.commentReply {
+    margin-left: 18px;
+    background: #f8fafc;
+}
+
+.adminComment {
+    border-color: #38bdf8;
+    background: #eff6ff;
+    box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.25);
+}
+
+.commentHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.commentMeta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.commentName {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.commentRole {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: capitalize;
+}
+
+.commentBadge {
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 2px 6px;
+    background: rgba(37, 99, 235, 0.12);
+    color: #1d4ed8;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.adminBadge {
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 2px 6px;
+    background: rgba(56, 189, 248, 0.2);
+    color: #0ea5e9;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.commentDate {
+    font-size: 11px;
+    color: #94a3b8;
+    white-space: nowrap;
+}
+
+.commentText {
+    font-size: 13px;
+    color: #334155;
+    white-space: pre-wrap;
+}
+
+.commentActionsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.commentActionButton {
+    border: none;
+    background: transparent;
+    color: #1e3a8a;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
+}
+
+.commentDeleteButton {
+    border: 1px solid #fecaca;
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.commentTextarea {
+    min-height: 70px;
+}
+
+.commentFormActions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.replyBanner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 6px 8px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e3a8a;
+    font-size: 11px;
+}
+
+.replyClear {
+    border: none;
+    background: transparent;
+    color: #1e3a8a;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .heroActions {
+        width: 100%;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        flex: 1;
+    }
+
+    .dayCell {
+        min-height: 76px;
+    }
+
+    .modalGrid {
+        flex-direction: column;
+    }
+
+    .formRow {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .dateField {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .dateInput {
+        width: 100%;
+    }
+}

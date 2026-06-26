@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Next.js build/runtime output
+.next/
+out/
+HTML/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python virtual environments
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Temporary artifacts
+tmp/
+temp/

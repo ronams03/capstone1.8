@@ -1,0 +1,490 @@
+.page {
+    padding: 12px 20px 16px;
+    max-width: 100%;
+    overflow: visible;
+}
+
+.shell {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    min-width: 0;
+    width: 100%;
+    overflow: visible;
+}
+
+.sidebar {
+    background:
+        linear-gradient(180deg, rgba(30, 58, 138, 0.05), rgba(30, 58, 138, 0) 34%),
+        #ffffff;
+    border: 1px solid #dbe4f0;
+    border-radius: 22px;
+    padding: 8px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+    position: sticky;
+    top: 10px;
+    align-self: start;
+    max-height: calc(100vh - 20px);
+    overflow: hidden;
+    z-index: 4;
+}
+
+.navList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: calc(100vh - 38px);
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.navList::-webkit-scrollbar {
+    display: none;
+}
+
+.navItem,
+.navItemActive {
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    padding: 6px 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    min-width: 0;
+}
+
+.navItem:hover {
+    background: #f8fafc;
+    border-color: #dbe4f0;
+    transform: translateX(2px);
+}
+
+.navItemActive {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.12);
+}
+
+.navIcon {
+    width: 18px;
+    height: 18px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    color: #1e3a8a;
+    flex-shrink: 0;
+}
+
+.navIcon svg {
+    width: 10px;
+    height: 10px;
+}
+
+.navItemActive .navIcon {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.navCopy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.navLabel {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    white-space: normal;
+}
+
+.navCaption {
+    display: none;
+}
+
+.navBadge {
+    align-self: center;
+    padding: 2px 5px;
+    border-radius: 999px;
+    background: #1d4ed8;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.content {
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contentIntro {
+    background:
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 40%),
+        #ffffff;
+    border: 1px solid #dbe4f0;
+    border-radius: 22px;
+    padding: 18px 22px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+    display: grid;
+    grid-template-columns: minmax(220px, 0.95fr) minmax(0, 1.35fr);
+    align-items: start;
+    gap: 18px;
+    min-width: 0;
+}
+
+.contentIntroHeader {
+    min-width: 0;
+    display: grid;
+    align-content: start;
+    gap: 8px;
+}
+
+.contentIntroDetails {
+    min-width: 0;
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 12px;
+}
+
+.contentEyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.contentTitle {
+    margin: 0;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.contentText {
+    margin: 0;
+    max-width: min(100%, 62ch);
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.lockdownPanel {
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    border: 1px solid #dbe4f0;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    padding: 14px;
+    display: grid;
+    gap: 10px;
+}
+
+.lockdownStatusRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: space-between;
+}
+
+.lockdownControlGroup {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lockdownBadge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 5px 10px;
+}
+
+.lockdownBadgeActive {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.lockdownBadgeInactive {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+
+.lockdownAction {
+    border: 1px solid transparent;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    padding: 0;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
+}
+
+.lockdownEditAction {
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #334155;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.lockdownEditAction:hover:not(:disabled) {
+    transform: translateY(-1px);
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.lockdownEditAction:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.lockdownAction svg {
+    width: 14px;
+    height: 14px;
+}
+
+.lockdownAction:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.03);
+}
+
+.lockdownAction:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.lockdownActionDisable {
+    border-color: #99f6e4;
+    background: #0f766e;
+    box-shadow: 0 8px 18px rgba(15, 118, 110, 0.2);
+}
+
+.lockdownActionEnable {
+    border-color: #fca5a5;
+    background: #b91c1c;
+    box-shadow: 0 8px 18px rgba(185, 28, 28, 0.18);
+}
+
+.lockdownCountdownEditor {
+    display: grid;
+    gap: 6px;
+    padding: 8px 10px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.lockdownCountdownLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.lockdownCountdownControls {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lockdownCountdownAdjust {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lockdownCountdownInput {
+    width: 62px;
+    height: 28px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0 8px;
+    font-size: 12px;
+    color: #0f172a;
+}
+
+.lockdownCountdownUnit {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.lockdownCountdownNotice {
+    display: grid;
+    gap: 8px;
+    padding: 10px;
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    background: #eff6ff;
+}
+
+.lockdownCountdownText {
+    font-size: 12px;
+    color: #1e40af;
+    font-weight: 600;
+}
+
+.lockdownCountdownButtons {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lockdownNowButton,
+.lockdownCancelButton {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.lockdownNowButton {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    color: #ffffff;
+}
+
+.lockdownCancelButton {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+.lockdownReason {
+    margin: 0;
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.lockdownReasonLabel {
+    color: #334155;
+    font-weight: 600;
+}
+
+.contentBody {
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.embedPanel {
+    background: #ffffff;
+    border: 1px solid #dbe4f0;
+    border-radius: 22px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.embedPanelFullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: #ffffff;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+}
+
+.embedFrame {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border: 0;
+    display: block;
+    background: #ffffff;
+}
+
+.embedFrameFullscreen {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    border: 0;
+    display: block;
+    background: #ffffff;
+}
+
+@media (max-width: 1180px) {
+    .shell {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+        max-height: none;
+    }
+
+    .navList {
+        max-height: none;
+    }
+
+    .contentIntro {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .lockdownPanel {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: 12px;
+    }
+
+    .contentIntro {
+        padding: 16px;
+    }
+}

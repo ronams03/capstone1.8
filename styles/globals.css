@@ -1,0 +1,1113 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --form-radius: 12px;
+  --modal-radius: 18px;
+  --card-radius: 16px;
+  --button-radius: 10px;
+  --font-ui: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --motion-fast: 140ms;
+  --motion-medium: 180ms;
+  --motion-slow: 240ms;
+  --motion-modal: 320ms;
+  --press-scale: 0.985;
+}
+
+/* ===== GLOBAL CURVED EDGES FOR ALL FORMS / MODALS / CARDS ===== */
+
+/*
+ * Target every inline-styled modal overlay (position:fixed backdrop)
+ * and curve the first child (the white modal panel).
+ * This covers Add/Edit Employee, Delete confirms, all float forms, etc.
+ */
+div[style*="position: fixed"][style*="display: flex"][style*="align-items: center"]>div,
+div[style*="position: fixed"][style*="display: flex"][style*="align-items:center"]>div,
+div[style*="inset: 0"][style*="display: flex"][style*="align-items: center"]>div,
+div[style*="inset: 0px"][style*="display: flex"][style*="align-items: center"]>div {
+  border-radius: var(--modal-radius) !important;
+}
+
+/* Cards / panels with white background used as form containers */
+div[style*="background: white"][style*="padding"],
+div[style*="background-color: white"][style*="padding"],
+div[style*="background: rgb(255, 255, 255)"][style*="padding"] {
+  border-radius: var(--card-radius) !important;
+}
+
+/* All buttons in the system — slightly more curved */
+button {
+  border-radius: var(--button-radius) !important;
+  font-family: inherit;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, filter;
+  transition-property: transform, box-shadow, filter, background-color, border-color, color, opacity !important;
+  transition-duration: var(--motion-fast) !important;
+  transition-timing-function: var(--ease-out) !important;
+  transition-delay: 0ms !important;
+}
+
+/* Dropdown menus / popups that appear on action buttons */
+div[style*="position: absolute"][style*="border-radius"] {
+  border-radius: var(--form-radius) !important;
+}
+
+/* Filter / search bar containers */
+div[style*="box-shadow"][style*="display: flex"][style*="gap"] {
+  border-radius: var(--card-radius) !important;
+}
+
+/* Table wrapper containers */
+div[style*="box-shadow"][style*="overflow"] {
+  border-radius: var(--card-radius) !important;
+}
+
+/* Settings / card panels with border */
+div[style*="background"][style*="border: 1px"][style*="border-radius"] {
+  border-radius: var(--card-radius) !important;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+/* Keep scrolling immediate on long admin pages. */
+html,
+body,
+#__next,
+* {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f6f8;
+  /* Match app container background to avoid edge contrast */
+  color: #171717;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+/* Cap headings to 14px to match design */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 14px !important;
+}
+
+/* Hide Next.js development indicator (floating N button) */
+#__next-build-watcher,
+nextjs-portal {
+  display: none !important;
+}
+
+/* Global form controls */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="search"],
+input[type="tel"],
+input[type="file"],
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: block;
+  font-family: inherit;
+  padding: 5px 8px;
+  margin: 3px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #111827;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--form-radius) !important;
+  min-width: 0;
+  /* Edge curve */
+  outline: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+}
+
+/* File inputs (rounded button + field) */
+input[type="file"] {
+  width: auto;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--form-radius) !important;
+  padding: 6px 10px;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  margin-right: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--form-radius) !important;
+  padding: 6px 10px;
+  background: #f8fafc;
+  color: #334155;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+
+/* Rounded checkboxes and radios */
+input[type="checkbox"],
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  display: inline-grid;
+  place-content: center;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"] {
+  border-radius: calc(var(--form-radius) / 2) !important;
+}
+
+input[type="radio"] {
+  border-radius: 999px;
+}
+
+input[type="checkbox"]::after,
+input[type="radio"]::after {
+  content: "";
+  opacity: 0;
+  transform: scale(0.72);
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    opacity var(--motion-fast) var(--ease-out);
+  background: #1e3a8a;
+}
+
+input[type="checkbox"]::after {
+  width: 10px;
+  height: 10px;
+  border-radius: calc(var(--form-radius) / 3);
+}
+
+input[type="radio"]::after {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+input[type="checkbox"]:checked::after,
+input[type="radio"]:checked::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 2px solid rgba(30, 58, 138, 0.25);
+  outline-offset: 2px;
+}
+
+input[type="checkbox"]:disabled,
+input[type="radio"]:disabled {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+}
+
+input[type="checkbox"]:disabled::after,
+input[type="radio"]:disabled::after {
+  background: #94a3b8;
+}
+
+/* Prevent overlapping and ensure vertical rhythm */
+form,
+.form,
+.form-group,
+.formRow,
+.form-row {
+  display: block;
+}
+
+.form-group,
+.formGroup,
+.form-field,
+.formField {
+  margin-bottom: 6px;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 2px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Inline groups: ensure spacing */
+.input-group,
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.input-group>* {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Selects */
+select {
+  background-color: #ffffff;
+}
+
+/* Textareas */
+textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+/* Error state helper (optional class) */
+.input-error,
+.is-invalid {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+}
+
+/* Disabled */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Compact forms within cards/tables */
+.card form .form-group,
+.table form .form-group {
+  margin-bottom: 4px;
+}
+
+/* SweetAlert2 (global notifications) */
+.swal2-container {
+  z-index: 200000 !important;
+}
+
+.swal-modern-popup {
+  border-radius: 16px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.24) !important;
+}
+
+.swal-modern-toast {
+  border-radius: 14px !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.2) !important;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.96) !important;
+}
+
+.swal-modern-title {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+}
+
+.swal-modern-html,
+.swal2-html-container {
+  color: #334155 !important;
+  font-size: 14px !important;
+}
+
+.swal-modern-toast-title {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+}
+
+.swal-modern-confirm,
+.swal-modern-cancel {
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  padding: 0.62rem 1rem !important;
+}
+
+@keyframes swalPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.93);
+    filter: blur(1px);
+  }
+
+  65% {
+    opacity: 1;
+    transform: translateY(-3px) scale(1.01);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes swalPopOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+}
+
+@keyframes swalToastIn {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes swalToastOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(18px) scale(0.96);
+  }
+}
+
+.swal-modern-in {
+  animation: swalPopIn var(--motion-modal) var(--ease-out) both !important;
+}
+
+.swal-modern-out {
+  animation: swalPopOut var(--motion-fast) var(--ease-out) both !important;
+}
+
+.swal-modern-toast-in {
+  animation: swalToastIn var(--motion-slow) var(--ease-out) both !important;
+}
+
+.swal-modern-toast-out {
+  animation: swalToastOut var(--motion-fast) var(--ease-out) both !important;
+}
+
+/* Intruder alert (forgot-password) */
+.intruder-popup {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow:
+    0 0 0 6px rgba(220, 38, 38, 0.2),
+    0 28px 90px rgba(127, 29, 29, 0.6) !important;
+}
+
+.intruder-title {
+  color: #7f1d1d !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 0 20px rgba(220, 38, 38, 0.34);
+}
+
+.intruder-icon {
+  transform: scale(1.32);
+  filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.45));
+}
+
+@keyframes intruderPulseIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.45);
+  }
+
+  65% {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 0 0 12px rgba(220, 38, 38, 0.12);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.2);
+  }
+}
+
+@keyframes intruderFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.intruder-show {
+  animation: intruderPulseIn 360ms var(--ease-out) both !important;
+}
+
+.intruder-hide {
+  animation: intruderFadeOut var(--motion-fast) var(--ease-out) both !important;
+}
+
+/* Emil-inspired hover language */
+:where(
+  button,
+  [class*="navItem"],
+  [class*="menuBtn"],
+  [class*="dropdownItem"],
+  [class*="dropItem"],
+  [class*="tab"],
+  [class*="primaryButton"],
+  [class*="secondaryButton"],
+  [class*="ghostButton"],
+  [class*="dangerButton"],
+  [class*="modalPrimary"],
+  [class*="calendarButton"],
+  [class*="holidayPill"],
+  [class*="actionBtn"],
+  [class*="actionInlineBtn"],
+  [class*="bulkBtn"],
+  [class*="archiveStorageBtn"],
+  [class*="badgeButton"],
+  [class*="statusButton"],
+  [class*="commentActionButton"],
+  [class*="lockdownAction"],
+  [class*="lockdownEditAction"],
+  [class*="lockdownNowButton"],
+  [class*="lockdownCancelButton"]
+):not([data-static-hover="true"]) {
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform, box-shadow, filter, background-color, border-color;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-medium) var(--ease-out),
+    filter var(--motion-fast) var(--ease-out),
+    background-color var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out);
+}
+
+:where(
+  button,
+  [class*="navItem"],
+  [class*="menuBtn"],
+  [class*="dropdownItem"],
+  [class*="dropItem"],
+  [class*="tab"],
+  [class*="primaryButton"],
+  [class*="secondaryButton"],
+  [class*="ghostButton"],
+  [class*="dangerButton"],
+  [class*="modalPrimary"],
+  [class*="calendarButton"],
+  [class*="holidayPill"],
+  [class*="actionBtn"],
+  [class*="actionInlineBtn"],
+  [class*="bulkBtn"],
+  [class*="archiveStorageBtn"],
+  [class*="badgeButton"],
+  [class*="statusButton"],
+  [class*="commentActionButton"],
+  [class*="lockdownAction"],
+  [class*="lockdownEditAction"],
+  [class*="lockdownNowButton"],
+  [class*="lockdownCancelButton"]
+):not([data-static-hover="true"])::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      118deg,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0.04) 34%,
+      rgba(255, 255, 255, 0.16) 58%,
+      rgba(255, 255, 255, 0.28) 100%
+    );
+  opacity: 0;
+  clip-path: inset(0 100% 0 0 round inherit);
+  pointer-events: none;
+  transition:
+    clip-path var(--motion-modal) var(--ease-out),
+    opacity var(--motion-fast) var(--ease-out);
+}
+
+:where(
+  [class*="hero"],
+  [class*="Card"],
+  [class*="card"],
+  [class*="Panel"],
+  [class*="panel"],
+  [class*="summaryChip"],
+  [class*="holidayCard"],
+  [class*="kpiCard"],
+  [class*="chartCard"],
+  [class*="statCard"],
+  [class*="dropzone"]
+):not([data-static-hover="true"]) {
+  transform: translateZ(0);
+  will-change: transform, box-shadow, filter, border-color;
+  transition:
+    transform var(--motion-medium) var(--ease-out),
+    box-shadow var(--motion-modal) var(--ease-out),
+    filter var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :where(
+    button,
+    [class*="navItem"],
+    [class*="menuBtn"],
+    [class*="dropdownItem"],
+    [class*="dropItem"],
+    [class*="tab"],
+    [class*="primaryButton"],
+    [class*="secondaryButton"],
+    [class*="ghostButton"],
+    [class*="dangerButton"],
+    [class*="modalPrimary"],
+    [class*="calendarButton"],
+    [class*="holidayPill"],
+    [class*="actionBtn"],
+    [class*="actionInlineBtn"],
+    [class*="bulkBtn"],
+    [class*="archiveStorageBtn"],
+    [class*="badgeButton"],
+    [class*="statusButton"],
+    [class*="commentActionButton"],
+    [class*="lockdownAction"],
+    [class*="lockdownEditAction"],
+    [class*="lockdownNowButton"],
+    [class*="lockdownCancelButton"]
+  ):not([data-static-hover="true"]):not(:disabled):not([disabled]):not([aria-disabled="true"]):hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 14px 28px rgba(15, 23, 42, 0.14),
+      0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    filter: saturate(1.05) brightness(1.01);
+  }
+
+  :where(
+    button,
+    [class*="navItem"],
+    [class*="menuBtn"],
+    [class*="dropdownItem"],
+    [class*="dropItem"],
+    [class*="tab"],
+    [class*="primaryButton"],
+    [class*="secondaryButton"],
+    [class*="ghostButton"],
+    [class*="dangerButton"],
+    [class*="modalPrimary"],
+    [class*="calendarButton"],
+    [class*="holidayPill"],
+    [class*="actionBtn"],
+    [class*="actionInlineBtn"],
+    [class*="bulkBtn"],
+    [class*="archiveStorageBtn"],
+    [class*="badgeButton"],
+    [class*="statusButton"],
+    [class*="commentActionButton"],
+    [class*="lockdownAction"],
+    [class*="lockdownEditAction"],
+    [class*="lockdownNowButton"],
+    [class*="lockdownCancelButton"]
+  ):not([data-static-hover="true"]):not(:disabled):not([disabled]):not([aria-disabled="true"]):hover::after {
+    opacity: 0.78;
+    clip-path: inset(0 0 0 0 round inherit);
+  }
+
+  :where(
+    [class*="hero"],
+    [class*="Card"],
+    [class*="card"],
+    [class*="Panel"],
+    [class*="panel"],
+    [class*="summaryChip"],
+    [class*="holidayCard"],
+    [class*="kpiCard"],
+    [class*="chartCard"],
+    [class*="statCard"],
+    [class*="dropzone"]
+  ):not([data-static-hover="true"]):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
+    filter: saturate(1.03);
+  }
+}
+
+:where(
+  button,
+  [class*="navItem"],
+  [class*="menuBtn"],
+  [class*="dropdownItem"],
+  [class*="dropItem"],
+  [class*="tab"],
+  [class*="primaryButton"],
+  [class*="secondaryButton"],
+  [class*="ghostButton"],
+  [class*="dangerButton"],
+  [class*="modalPrimary"],
+  [class*="calendarButton"],
+  [class*="holidayPill"],
+  [class*="actionBtn"],
+  [class*="actionInlineBtn"],
+  [class*="bulkBtn"],
+  [class*="archiveStorageBtn"],
+  [class*="badgeButton"],
+  [class*="statusButton"],
+  [class*="commentActionButton"],
+  [class*="lockdownAction"],
+  [class*="lockdownEditAction"],
+  [class*="lockdownNowButton"],
+  [class*="lockdownCancelButton"]
+):not([data-static-hover="true"]):not(:disabled):not([disabled]):not([aria-disabled="true"]):active {
+  transform: translateY(0) scale(var(--press-scale));
+  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── COMPACT LAYOUT OVERRIDES ─── */
+/* Force all buttons to compact size so list rows fit on one line */
+button {
+  padding-block: 6px !important;
+  padding-inline: 12px !important;
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  min-height: 32px !important;
+  min-width: 32px !important;
+  max-width: 100%;
+  vertical-align: middle;
+}
+/* Override common inline padding patterns that are larger */
+button[style*="padding: 10px"],
+button[style*="padding:10px"],
+button[style*="padding: 12px"],
+button[style*="padding:12px"],
+button[style*="padding: 14px"],
+button[style*="padding:14px"] {
+  padding: 6px 12px !important;
+}
+/* Compact icon-only buttons (30-36px → 26-28px) */
+button[style*="width: 3"],
+button[style*="height: 3"] {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+}
+/* Compact toolbars / action bars */
+div[style*="display: flex"][style*="gap"]:where(
+  [style*="padding: 10px"],
+  [style*="padding:10px"],
+  [style*="padding: 12px"],
+  [style*="padding:12px"],
+  [style*="padding: 15px"],
+  [style*="padding:15px"]
+) {
+  padding: 6px 10px !important;
+  gap: 6px !important;
+}
+/* Tighter table cells */
+td, th {
+  padding-block: 4px !important;
+  padding-inline: 6px !important;
+  font-size: 12px !important;
+}
+/* Compact filter/search bars */
+input, select, textarea {
+  font-size: 12px !important;
+  padding-block: 4px !important;
+  padding-inline: 8px !important;
+}
+/* Compact badges, labels, pills */
+span[style*="border-radius"][style*="padding"]:where(
+  [style*="padding: 4px"],
+  [style*="padding:4px"],
+  [style*="padding: 6px"],
+  [style*="padding:6px"],
+  [style*="padding: 8px"],
+  [style*="padding:8px"],
+  [style*="padding: 10px"],
+  [style*="padding:10px"]
+) {
+  padding: 2px 6px !important;
+  font-size: 11px !important;
+}
+
+/* ─── PAGE HEADER + INLINE FILTER SYSTEM ─── */
+.pageHeaderInline,
+.page-toolbar-inline {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+  margin-bottom: 12px !important;
+}
+
+.pageHeaderText,
+.page-title-group {
+  flex: 1 1 220px !important;
+  min-width: 180px !important;
+}
+
+.pageInlineFilters,
+.page-filter-inline {
+  flex: 0 1 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.pageInlineFilters > *,
+.page-filter-inline > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.pageInlineFilters input,
+.pageInlineFilters select,
+.page-filter-inline input,
+.page-filter-inline select {
+  width: auto !important;
+  min-width: 132px !important;
+  max-width: 200px !important;
+  margin: 0 !important;
+}
+
+.pageInlineFilters label,
+.page-filter-inline label {
+  margin: 0 !important;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  white-space: nowrap !important;
+}
+
+.pageInlineFilters label > span,
+.page-filter-inline label > span {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  line-height: 1.1 !important;
+}
+
+.pageInlineFilters button,
+.page-filter-inline button,
+.app-action-btn,
+button[class*="primaryButton"],
+button[class*="secondaryButton"],
+button[class*="ghostButton"],
+button[class*="btnPrimary"],
+button[class*="btnSecondary"] {
+  min-height: 34px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 8px 12px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(148, 163, 184, 0.36) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #334155 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+.pageInlineFilters button:hover,
+.page-filter-inline button:hover,
+.app-action-btn:hover,
+button[class*="primaryButton"]:hover,
+button[class*="secondaryButton"]:hover,
+button[class*="ghostButton"]:hover,
+button[class*="btnPrimary"]:hover,
+button[class*="btnSecondary"]:hover {
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.11) !important;
+  transform: translateY(-1px) !important;
+}
+
+.app-action-btn-primary {
+  border-color: rgba(37, 99, 235, 0.25) !important;
+  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18) !important;
+}
+
+button[class*="primaryButton"],
+button[class*="btnPrimary"] {
+  border-color: rgba(37, 99, 235, 0.25) !important;
+  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18) !important;
+}
+
+.app-action-btn-danger {
+  border-color: rgba(239, 68, 68, 0.28) !important;
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+}
+
+.app-action-btn-success {
+  border-color: rgba(34, 197, 94, 0.26) !important;
+  background: #f0fdf4 !important;
+  color: #166534 !important;
+}
+
+@media (max-width: 720px) {
+  .pageHeaderInline,
+  .page-toolbar-inline {
+    align-items: stretch !important;
+  }
+  .pageInlineFilters,
+  .page-filter-inline {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  .pageInlineFilters input,
+  .pageInlineFilters select,
+  .page-filter-inline input,
+  .page-filter-inline select {
+    flex: 1 1 160px !important;
+    max-width: none !important;
+  }
+}
+/* ─── ACTION BUTTON SYSTEM ─── */
+button:has(.crud-action-icon),
+button[aria-label*="View"],
+button[aria-label*="Edit"],
+button[aria-label*="Archive"],
+button[aria-label*="Restore"],
+button[aria-label*="Delete"],
+button[title*="View"],
+button[title*="Edit"],
+button[title*="Archive"],
+button[title*="Restore"],
+button[title*="Delete"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-height: 32px !important;
+  white-space: nowrap !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(148, 163, 184, 0.38) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  color: #475569 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06) !important;
+}
+
+button:has(.crud-action-icon[data-crud-action="create"]),
+button:has(.crud-action-icon[data-crud-action="save"]),
+button:has(.crud-action-icon[data-crud-action="approve"]) {
+  border-color: rgba(37, 99, 235, 0.22) !important;
+  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18) !important;
+}
+
+button:has(.crud-action-icon[data-crud-action="view"]) {
+  color: #0369a1 !important;
+  border-color: rgba(14, 165, 233, 0.22) !important;
+  background: #f0f9ff !important;
+}
+
+button:has(.crud-action-icon[data-crud-action="edit"]),
+button:has(.crud-action-icon[data-crud-action="update"]) {
+  color: #1d4ed8 !important;
+  border-color: rgba(59, 130, 246, 0.24) !important;
+  background: #eff6ff !important;
+}
+
+button:has(.crud-action-icon[data-crud-action="archive"]) {
+  color: #92400e !important;
+  border-color: rgba(245, 158, 11, 0.28) !important;
+  background: #fffbeb !important;
+}
+
+button:has(.crud-action-icon[data-crud-action="restore"]) {
+  color: #166534 !important;
+  border-color: rgba(34, 197, 94, 0.24) !important;
+  background: #f0fdf4 !important;
+}
+
+button:has(.crud-action-icon[data-crud-action="delete"]),
+button:has(.crud-action-icon[data-crud-action="cancel"]) {
+  color: #b91c1c !important;
+  border-color: rgba(239, 68, 68, 0.24) !important;
+  background: #fef2f2 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  button:has(.crud-action-icon):not(:disabled):hover {
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12) !important;
+    filter: saturate(1.08) brightness(1.01) !important;
+  }
+}
+
+/* ─── ICON-ONLY ACTION BUTTONS ─── */
+/* Normalize inline-styled action icon buttons while keeping semantic color chips */
+button[style*="display: inline-flex"][style*="border-radius:"][style*="width:"],
+button[style*="display:inline-flex"][style*="border-radius:"][style*="width:"],
+button[style*="display: inline-flex"][style*="border-radius:"][style*="padding: 0"],
+button[style*="display:inline-flex"][style*="border-radius:"][style*="padding: 0"] {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid rgba(148, 163, 184, 0.35) !important;
+  padding: 2px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  border-radius: 999px !important;
+}
+button[style*="display: inline-flex"][style*="border-radius:"][style*="width:"]:hover,
+button[style*="display:inline-flex"][style*="border-radius:"][style*="width:"]:hover {
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12) !important;
+}
+/* Payroll CSS module action buttons */
+.actionInlineBtn,
+.actionInlineSuccess,
+.actionInlineDanger {
+  background: #f8fafc !important;
+  border: 1px solid rgba(148, 163, 184, 0.35) !important;
+  padding: 2px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 999px !important;
+}
+.actionInlineSuccess {
+  color: #15803d !important;
+}
+.actionInlineDanger {
+  color: #b91c1c !important;
+}
+/* Dropdown action menu items — reduce padding to be compact */
+button[style*="display: block"][style*="width: 100%"],
+button[style*="display:block"][style*="width:100%"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 10px !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+}
+/* Restore buttons in archive views (green pill buttons) */
+button[style*="background: #16a34a"][style*="color: white"],
+button[style*="background:#16a34a"][style*="color:white"] {
+  background: #f0fdf4 !important;
+  border: 1px solid rgba(34, 197, 94, 0.24) !important;
+  padding: 6px 12px !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  border-radius: 999px !important;
+  color: #166534 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+}
+button[style*="background: #16a34a"][style*="color: white"]:hover,
+button[style*="background:#16a34a"][style*="color:white"]:hover {
+  background: #dcfce7 !important;
+}
+
+/* Compact page title areas */
+h1, h2, h3 {
+  margin-block: 4px !important;
+}
+h1 { font-size: 18px !important; }
+h2 { font-size: 16px !important; }
+h3 { font-size: 14px !important; }
